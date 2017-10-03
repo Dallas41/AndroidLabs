@@ -3,4 +3,11 @@
     <string name="hello_message">反正你也看不懂</string>
     <string name="ButtonText">我是你大佬</string>
     <string name="text">报上名来</string>
+    <string name="password">芝麻开门</string>
+    <string name="cancel">关门放狗</string>
+    <string name="dialog_message">你还想回去？</string>
+    <string name="ok">好吧好吧</string>
+    <string name="dialog_title">要啥服务？</string>
+    <string name="switchOn">大爷别走啊</string>
+    <string name="switchOff">大爷再来啊</string>
 </resources>
