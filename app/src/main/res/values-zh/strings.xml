@@ -10,4 +10,6 @@
     <string name="dialog_title">要啥服务？</string>
     <string name="switchOn">大爷别走啊</string>
     <string name="switchOff">大爷再来啊</string>
+    <string name="startchat">大爷来聊聊啊</string>
+    <string name="textView">大爷请说</string>
 </resources>

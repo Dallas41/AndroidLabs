@@ -10,5 +10,7 @@
     <string name="dialog_title">What do you want</string>
     <string name="switchOn">Switch is On</string>
     <string name="switchOff">Switch is Off</string>
+    <string name="startchat">Start Chat</string>
+    <string name="textView">Text View</string>
 
 </resources>
