@@ -12,4 +12,8 @@
     <string name="switchOff">大爷再来啊</string>
     <string name="startchat">大爷来聊聊啊</string>
     <string name="textView">大爷请说</string>
+    <string name="forecast">太上老君</string>
+    <string name="currentTemperature">你是风儿我是沙: </string>
+    <string name="minTemperature">热死你: </string>
+    <string name="maxTemperature">冷死你: </string>
 </resources>

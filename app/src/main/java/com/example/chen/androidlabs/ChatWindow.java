@@ -1,8 +1,12 @@
 package com.example.chen.androidlabs;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,13 +18,15 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import static com.example.chen.androidlabs.ChatDatabaseHelper.KEY_MESSAGE;
+
 public class ChatWindow extends Activity {
 
     protected ListView listView;
     protected Button sendButton;
     protected EditText editText;
     protected ArrayList<String> stringArrayList = new ArrayList<>();
-    //protected SharedPreferences pref;
+    protected static final String ACTIVITY_NAME = "ChatWindow";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,20 +35,37 @@ public class ChatWindow extends Activity {
         listView=findViewById(R.id.listView);
         sendButton=findViewById(R.id.sendButton);
         editText=findViewById((R.id.editText));
-        //pref = getPreferences(Context.MODE_PRIVATE);
+        final ChatDatabaseHelper dhHelper = new ChatDatabaseHelper(this);
+        final SQLiteDatabase db = dhHelper.getWritableDatabase();
 
         //in this case, “this” is the ChatWindow, which is-A Context object
         final ChatAdapter messageAdapter =new ChatAdapter( this );
         listView.setAdapter (messageAdapter);
 
+        Cursor c = db.rawQuery("select * from " + dhHelper.name,null);
+        c.moveToFirst();
+
+        while(!c.isAfterLast()) {
+            int i = c.getColumnIndex(dhHelper.KEY_MESSAGE);
+           stringArrayList.add(c.getString(c.getColumnIndex(dhHelper.KEY_MESSAGE)));
+           Log.i(ACTIVITY_NAME, "SQL MESSAGE:" + c.getString(c.getColumnIndex(dhHelper.KEY_MESSAGE)));
+           c.moveToNext();
+        }
+
+        Log.i(ACTIVITY_NAME, "Cursor’s  column count =" + c.getColumnCount() );
+
+        for(int i=0;i<c.getColumnCount();i++){
+            Log.i(ACTIVITY_NAME,c.getColumnName(i));
+        }
+
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String userEnter = editText.getText().toString();
-                //SharedPreferences.Editor edit = pref.edit();
-               // edit.putString("DefaultString", userEnter);
-               // edit.commit();
+                ContentValues cValues = new ContentValues();
                 stringArrayList.add(userEnter);
+                cValues.put(KEY_MESSAGE,userEnter);
+                db.insert(dhHelper.name,null,cValues);
 
                 messageAdapter.notifyDataSetChanged(); //this restarts the process of getCount()/getView()
                 editText.setText("");
@@ -75,5 +98,10 @@ public class ChatWindow extends Activity {
             message.setText(   getItem(position)  ); // get the string at position
             return result;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

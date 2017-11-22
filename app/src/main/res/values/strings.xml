@@ -12,5 +12,8 @@
     <string name="switchOff">Switch is Off</string>
     <string name="startchat">Start Chat</string>
     <string name="textView">Text View</string>
-
+    <string name="forecast">WeatherForecast</string>
+    <string name="currentTemperature">Current Temperature: </string>
+    <string name="minTemperature">Minimum Temperature: </string>
+    <string name="maxTemperature">Maximum Temperature: </string>
 </resources>
