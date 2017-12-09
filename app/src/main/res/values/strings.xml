@@ -16,4 +16,7 @@
     <string name="currentTemperature">Current Temperature: </string>
     <string name="minTemperature">Minimum Temperature: </string>
     <string name="maxTemperature">Maximum Temperature: </string>
+    <string name="messageHere">Message Here</string>
+    <string name="idHere">ID=</string>
+    <string name="deleteMessage">DELETE THIS MESSAGE</string>
 </resources>
