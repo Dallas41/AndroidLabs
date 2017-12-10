@@ -19,4 +19,8 @@
     <string name="messageHere">Message Here</string>
     <string name="idHere">ID=</string>
     <string name="deleteMessage">DELETE THIS MESSAGE</string>
+    <string name="title_activity_test_toolbar">TestToolbar</string>
+    <string name="lab8_about_toast">Version 1.0 - Shu Chen</string>
+    <string name="lab8_item2_dialog">"Do you want to go back?"</string>
+    <string name="lab8_item3_newmessage">New Message</string>
 </resources>

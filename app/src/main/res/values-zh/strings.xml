@@ -19,4 +19,8 @@
     <string name="messageHere">马杀鸡在这</string>
     <string name="idHere">马杀鸡的ID</string>
     <string name="deleteMessage">代表月亮消灭你</string>
+    <string name="title_activity_test_toolbar">鞭打工具箱</string>
+    <string name="lab8_about_toast">我就是这么屌</string>
+    <string name="lab8_item2_dialog">"太君这是要回去了吗?"</string>
+    <string name="lab8_item3_newmessage">惊不惊喜</string>
 </resources>
