@@ -42,9 +42,11 @@ public class ChatWindow extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_window);
+
         listView=findViewById(R.id.listView);
         sendButton=findViewById(R.id.sendButton);
         editText=findViewById((R.id.editText));
+
         tabletLayOut=findViewById(R.id.tableFrameLayout);
         if(tabletLayOut == null){
             onTablet=false;
@@ -94,7 +96,7 @@ public class ChatWindow extends Activity {
             @Override    //the parameter "int i" means the position on the listview
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 // get info from the click item
-                String singleMessage = c.getString(c.getColumnIndex(ChatDatabaseHelper.KEY_MESSAGE));
+                String singleMessage = messageAdapter.getItem(i);
                 Long singleId = messageAdapter.getItemId(i);
 
                 Bundle bd = new Bundle();
@@ -121,7 +123,6 @@ public class ChatWindow extends Activity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
             if (resultCode == 25) {
                 Bundle args =  data.getBundleExtra("forDelete");
                 Long keyID = args.getLong("id");
@@ -133,7 +134,6 @@ public class ChatWindow extends Activity {
     protected void removeMessage(Long id, int viewPosition){
         stringArrayList.remove(viewPosition);
         writeableDB.delete(ChatDatabaseHelper.name, ChatDatabaseHelper.Key_ID + "=" + id, null);
-        //after delete the message, we must update the cursor
         c = writeableDB.rawQuery("select * from " + dhHelper.name,null);
         //this will update the listview that show on the screen
         messageAdapter.notifyDataSetChanged();
@@ -154,16 +154,17 @@ public class ChatWindow extends Activity {
 
         public View getView(int position, View convertView, ViewGroup parent){
             LayoutInflater inflater = ChatWindow.this.getLayoutInflater();
-            View result = null ;
+            View result = null;
             if(position%2 == 0)
                 result = inflater.inflate(R.layout.chat_row_incoming, null);
             else
                 result = inflater.inflate(R.layout.chat_row_outgoing, null);
 
-            TextView message = (TextView)result.findViewById(R.id.message_text);
-            message.setText(   getItem(position)  ); // get the string at position
+            TextView message = result.findViewById(R.id.message_text);
+            message.setText(getItem(position)); // get the string at position
             return result;
         }
+
         public long getItemId(int position){
             c.moveToPosition(position);
             String x;

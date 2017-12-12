@@ -56,7 +56,9 @@ public class MessageFragment extends Fragment {
                     getActivity().setResult(25, intent);
                     getActivity().finish();
                 } else{
-                    ((ChatWindow)getActivity()).removeMessage(id,viewPosition );
+                    ((ChatWindow)getActivity()).removeMessage(id,viewPosition);
+                    //clean the fragment that appeared on the right side of the screen (tablet)
+                    getActivity().getFragmentManager().beginTransaction().remove(MessageFragment.this).commit();
                 }
             }
         });

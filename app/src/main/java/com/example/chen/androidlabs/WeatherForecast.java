@@ -38,12 +38,12 @@ public class WeatherForecast extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather_forecast);
 
-        imageView=(ImageView)findViewById(R.id.forecastImage);
+        imageView = findViewById(R.id.forecastImage);
         imageView.setVisibility(View.VISIBLE);
-        currentT=(TextView)findViewById(R.id.currentTemperature);
-        minT=(TextView)findViewById(R.id.minTemperature);
-        maxT=(TextView)findViewById(R.id.maxTemperature);
-        pBar= (ProgressBar)findViewById(R.id.progressBar);
+        currentT = findViewById(R.id.currentTemperature);
+        minT = findViewById(R.id.minTemperature);
+        maxT = findViewById(R.id.maxTemperature);
+        pBar = findViewById(R.id.progressBar);
         pBar.setVisibility(View.VISIBLE);
 
         ForecastQuery app = new ForecastQuery();
@@ -51,11 +51,11 @@ public class WeatherForecast extends Activity {
     }
 
     class ForecastQuery extends AsyncTask<String, Integer, String> {
-        protected String min;
-        protected String max;
-        protected String current;
-        protected String iconName;
-        protected Bitmap weatherPicture;
+        private String min;
+        private String max;
+        private String current;
+        private String iconName;
+        private Bitmap weatherPicture;
 
         @Override
         protected String doInBackground(String... args) {
